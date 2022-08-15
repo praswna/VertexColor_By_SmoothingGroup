@@ -1,2 +1,2 @@
-# Vcol_by_SG
+# VCSG
 vertex color by smoothing group
