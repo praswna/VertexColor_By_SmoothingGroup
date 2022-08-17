@@ -6,8 +6,8 @@ rollout VC_by_SG "VCSG" width:170 height:210
 	spinner 'SG_spn' "SG" pos:[95,42] width:60 height:16 range:[0,180,20] type:#integer scale:1 align:#left
 	button 'smt_gr1' "SG 1" pos:[8,42] width:85 height:16 align:#left
 	button 'setBySG_bt' "set SG" pos:[8,5] width:85 height:35 toolTip:"" align:#left
-	button 'Vcol' "Vcol on/off" pos:[95,24] width:65 height:16 toolTip:"" align:#left
-	button 'clear_Vcol' "clear_Vcol" pos:[95,6] width:65 height:16 align:#left
+	checkbutton 'Vcol_on_off' "Vcol on/off" pos:[95,24] width:65 height:16 toolTip:"" align:#left
+	button 'clear_Vcol' "Vcol clear" pos:[95,6] width:65 height:16 align:#left
 	checkbutton 'selBySG1' "1" pos:[6,63] width:19 height:12 highlightColor:(color 230 50 50) align:#left
 	checkbutton 'selBySG2' "2" pos:[26,63] width:19 height:12 highlightColor:(color 200 200 0) align:#left
 	checkbutton 'selBySG3' "3" pos:[46,63] width:19 height:12 highlightColor:(color 120 200 60) align:#left
@@ -214,7 +214,7 @@ rollout VC_by_SG "VCSG" width:170 height:210
 			)
 			setBynum.state = true
 			-- setBynum.highlightColor = setBycol
-
+			Vcol_on_off.state = on
 			CompleteRedraw()
 			)
 		)
@@ -315,6 +315,7 @@ rollout VC_by_SG "VCSG" width:170 height:210
 				if s14.count != 0 then selBySG14.state = true
 				if s15.count != 0 then selBySG15.state = true
 				if s16.count != 0 then selBySG16.state = true
+				Vcol_on_off.state = on
 			)
 		)
 	)
@@ -368,27 +369,25 @@ rollout VC_by_SG "VCSG" width:170 height:210
 	)
 	on setBySG_bt pressed do
 		(setBySG_FN() )
-	on Vcol pressed do
+	
+	on Vcol_on_off changed state do
 	(
 		sel = selection as array
 		for obj in sel do
 		(
-			i = obj.showVertexColors
-			if  i == false then
-			(
+		   if state == on then
 				obj.showVertexColors = true
-				obj.vertexColorsShaded = true
-			)
-			else 
-			(
+				obj.vertexColorsShaded = true	
+		   if state == off then
 				obj.showVertexColors = false
-				obj.vertexColorsShaded = false
-			)
-				
+				obj.vertexColorsShaded = true
 		)
 		select sel
 		CompleteRedraw()
 	)
+
+
+	
 	on clear_Vcol pressed do
 	(
 		if selection.count == 0 then messagebox "Select some object first!" title:"Warning" beep:off else
@@ -406,73 +405,92 @@ rollout VC_by_SG "VCSG" width:170 height:210
 				$.EditablePoly.setSmoothingGroups 0 -1 1
 				$.EditablePoly.setSmoothingGroups 1 -1 1
 				max select none
-	
+				Vcol_on_off.state = off
 			)
 		)
+	)
+	on smt_gr1 pressed do
+	( 
+		if selection.count == 0 then messagebox "Select some object first!" title:"Warning" beep:off else
+		(
+		if classOf $ != Editable_Poly then rol_EditPoly() else
+			(
+			max modify mode
+			subobjectlevel = 4
+			max select all
+			
+			$.EditablePoly.setSmoothingGroups 0 -1 1
+			$.EditablePoly.setSmoothingGroups 1 -1 1
+			max select none
+			--max create mode
+			setBySG_FN()
+			)
+		)
+		Vcol_on_off.state = on
 	)
 	on selBySG1 changed state do
 		(selSmG(1) )
 	on selBySG1 rightClick do
-		(setSmG(1) )
+		(off_state() setSmG(1) )
 	on selBySG2 changed state do
 		(selSmG(2) )
 	on selBySG2 rightClick do
-		(setSmG(2) )
+		(off_state() setSmG(2) )
 	on selBySG3 changed state do
 		(selSmG(4) )
 	on selBySG3 rightClick do
-		(setSmG(4) )
+		(off_state() setSmG(4) )
 	on selBySG4 changed state do
 		(selSmG(8) )
 	on selBySG4 rightClick do
-		(setSmG(8) )
+		(off_state() setSmG(8) )
 	on selBySG5 changed state do
 		(selSmG(16) )
 	on selBySG5 rightClick do
-		(setSmG(16) )
+		(off_state() setSmG(16) )
 	on selBySG6 changed state do
 		(selSmG(32) )
 	on selBySG6 rightClick do
-		(setSmG(32) )
+		(off_state() setSmG(32) )
 	on selBySG7 changed state do
 		(selSmG(64) )
 	on selBySG7 rightClick do
-		(setSmG(64) )
+		(off_state() setSmG(64) )
 	on selBySG8 changed state do
 		(selSmG(128) )
 	on selBySG8 rightClick do
-		(setSmG(128) )
+		(off_state() setSmG(128) )
 	on selBySG9 changed state do
 		(selSmG(256) )
 	on selBySG9 rightClick do
-		(setSmG(256) )
+		(off_state() setSmG(256) )
 	on selBySG10 changed state do
 		(selSmG(512) )
 	on selBySG10 rightClick do
-		(setSmG(512) )
+		(off_state() setSmG(512) )
 	on selBySG11 changed state do
 		(selSmG(1024) )
 	on selBySG11 rightClick do
-		(setSmG(1024) )
+		(off_state() setSmG(1024) )
 	on selBySG12 changed state do
 		(selSmG(2048) )
 	on selBySG12 rightClick do
-		(setSmG(2048) )
+		(off_state() setSmG(2048) )
 	on selBySG13 changed state do
 		(selSmG(4096) )
 	on selBySG13 rightClick do
-		(setSmG(4096) )
+		(off_state() setSmG(4096) )
 	on selBySG14 changed state do
 		(selSmG(8192) )
 	on selBySG14 rightClick do
-		(setSmG(8192) )
+		(off_state() setSmG(8192) )
 	on selBySG15 changed state do
 		(selSmG(16384) )
 	on selBySG15 rightClick do
-		(setSmG(16384) )
+		(off_state() setSmG(16384) )
 	on selBySG16 changed state do
 		(selSmG(32768) )
 	on selBySG16 rightClick do
-		(setSmG(32768) )
+		(off_state() setSmG(32768) )
 )
 createDialog VC_by_SG
