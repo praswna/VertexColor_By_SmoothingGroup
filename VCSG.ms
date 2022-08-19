@@ -99,8 +99,7 @@ rollout VC_by_SG "VCSG" width:170 height:210
 						32768 : selBySG16.state = true
 					)
 					
-				)
-					
+				)					
 			)
 	)
 	-- 	(
@@ -398,12 +397,12 @@ rollout VC_by_SG "VCSG" width:170 height:210
 				convertToPoly $
 				max modify mode
 				$.showVertexColors = false
-				
+			
 				subobjectlevel = 4
-				max select all
-				
-				$.EditablePoly.setSmoothingGroups 0 -1 1
-				$.EditablePoly.setSmoothingGroups 1 -1 1
+-- 				max select all
+-- 				
+-- 				$.EditablePoly.setSmoothingGroups 0 -1 1
+-- 				$.EditablePoly.setSmoothingGroups 1 -1 1
 				max select none
 				Vcol_on_off.state = off
 			)
