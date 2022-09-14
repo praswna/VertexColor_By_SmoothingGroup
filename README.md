@@ -1,5 +1,7 @@
 # VCSG
 
+![image](https://user-images.githubusercontent.com/92988537/190112892-0044f8ff-59c4-465f-a72f-6ca8004343ac.png)
+
 VCSG (Vertex Color by Smoothing Group) visualizes smoothing groups as vertex colors.
 VCSG(Vertex Color by Smoothing Group)는 스무딩 그룹을 텍스처로 하고 있습니다.
 
