@@ -2,7 +2,7 @@
 
 ![image](https://user-images.githubusercontent.com/92988537/190112892-0044f8ff-59c4-465f-a72f-6ca8004343ac.png)
 
-VCSG (Vertex Color by Smoothing Group) visualizes smoothing groups as vertex colors.
+**VCSG** (Vertex Color by Smoothing Group) visualizes smoothing groups as vertex colors.
 
 
 1.Set the vertex color to the smoothing group
@@ -13,8 +13,10 @@ VCSG (Vertex Color by Smoothing Group) visualizes smoothing groups as vertex col
 
 
 
-Install: Drop *.ms to viewport
+**Install**: Drop *.ms to viewport
 
-Version Requirement:  3ds Max 2019 - 2023
+**Version Requirement**:  3ds Max 2019 - 2023
 
-Tutorial Documentation : https://www.evernote.com/l/Am08vnKCEhJLLp17kGaTlFz5rDch7ggKD6g/
+**Tutorial Documentation** : https://www.evernote.com/l/Am08vnKCEhJLLp17kGaTlFz5rDch7ggKD6g/
+
+**Tutorial Youtube** : https://youtu.be/b7dtnCqZtrI
